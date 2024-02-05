@@ -1,0 +1,34 @@
+const express = require("express")
+const swaggerjsdoc = require("swagger-jsdoc")
+const composers = require("./routes/composers")
+const swaggerui = require ("swagger-ui-express")
+
+cost app = express();
+
+app.use(express.json());
+
+app.use("/", composers);
+
+const options = {
+    openapi: "3.0.0".
+    info: { 
+        title:"Composers api doc",
+        version: "0,1"
+    }
+    servers: [
+        {
+            url: "http//localhost:3000/",
+        },
+    ],
+    apis:["./routes/*.js"],
+},
+
+
+const spacs = swaggerjsdoc(options)
+app.use(
+"/api-docs"
+swaggerui.serve,
+swaggerui.setup(spacs)
+
+const port = 3000
+app.listen(port, () => 
